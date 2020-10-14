@@ -1,0 +1,50 @@
+from selenium import webdriver
+from selenium.webdriver.support.select import Select
+# import time
+
+class ParallelScore():
+
+    def test(self):
+        indexUrl = "https://parallelscore.com"
+        # The executable_path below is the location of the chrome driver on the PC
+        driver = webdriver.Chrome(executable_path="INSERT DRIVER LOCATION HERE!!!")
+        driver.maximize_window()
+        driver.get(indexUrl)
+        # This allows a 60 seconds period for each action to take place
+        driver.implicitly_wait(60)
+
+        # Close popup
+        popup = driver.find_element_by_xpath('// div[@class = "mc-closeModal"]')
+        popup.click()
+
+        # These lines are used to click on the careers link
+        career = driver.find_element_by_xpath('//a[@href = "https://parallelscore.com/careers/"]')
+        career.click()
+
+        # These lines are used to select the full-time option from the category dropdown
+        category = driver.find_element_by_xpath('//select[@id = "category"]')
+        select = Select(category)
+        select.select_by_value('full-time')
+
+        # You can use the sleep function if you want to see the the actions taken
+        # time.sleep(3)
+
+        # These lines are used to select the lagos option from the location dropdown
+        location = driver.find_element_by_xpath('//select[@id = "location"]')
+        select = Select(location)
+        select.select_by_value('lagos')
+
+        # You can use the sleep function if you want to see the the actions taken
+        # time.sleep(3)
+
+        search = driver.find_element_by_xpath('//input[@type = "submit"]')
+        search.click()
+
+        verifyElement = driver.find_element_by_xpath('//a[@href = "https://parallelscore.com/jobs/automation-qa-engineer/"]')
+
+        if verifyElement is not None:
+            print("Successful")
+        else: print("Fail")
+
+run_test = ParallelScore()
+run_test.test()
