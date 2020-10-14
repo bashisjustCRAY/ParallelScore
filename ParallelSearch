@@ -26,7 +26,7 @@ class ParallelScore():
         select = Select(category)
         select.select_by_value('full-time')
 
-        # You can use the sleep function if you want to see the the actions taken
+        # You can use the sleep function if you want to see the actions taken
         # time.sleep(3)
 
         # These lines are used to select the lagos option from the location dropdown
@@ -34,14 +34,14 @@ class ParallelScore():
         select = Select(location)
         select.select_by_value('lagos')
 
-        # You can use the sleep function if you want to see the the actions taken
+        # You can use the sleep function if you want to see the actions taken
         # time.sleep(3)
 
         search = driver.find_element_by_xpath('//input[@type = "submit"]')
         search.click()
-
+        
+        # These lines verify the search result by verifying if an element is present
         verifyElement = driver.find_element_by_xpath('//a[@href = "https://parallelscore.com/jobs/automation-qa-engineer/"]')
-
         if verifyElement is not None:
             print("Successful")
         else: print("Fail")
